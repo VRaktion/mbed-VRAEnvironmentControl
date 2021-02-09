@@ -50,16 +50,17 @@ void VRAEnvironmentControl::onStateOn(){
 void VRAEnvironmentControl::getEnv(){
     printf("[envCtrl] getEnv\r\n");
     this->tempHumidSens->readTempHum();
-    float temp1 = this->tempHumidSens->readTemperature();
-    float humid = this->tempHumidSens->readHumidity();
-    float temp2 = this->pressSens->readTemperature();
-    float press = this->pressSens->readPressure();
+    float environment[4]{
+        this->tempHumidSens->readTemperature(),
+        this->tempHumidSens->readHumidity(),
+        this->pressSens->readTemperature(),
+        this->pressSens->readPressure()
+    };
     this->tempHumidSens->triggerMeassure();
-    printf("t1: %d t2: %d h:%d p:%d\r\n", (int) temp1, (int) temp2, (int) humid, (int) press);
-    this->setQuatFloatVal(
-        (uint16_t) VRAEnvironmentControl::Characteristics::Environment, 
-        temp1, 
-        temp2, 
-        humid,
-        press);
+    printf("t1: %d t2: %d h:%d p:%d\r\n", (int) environment[0], (int) environment[1], (int) environment[2], (int) environment[3]);
+    
+    this->setGatt(
+        (uint16_t) VRAEnvironmentControl::Characteristics::Environment,
+        environment, 4
+    );
 }
