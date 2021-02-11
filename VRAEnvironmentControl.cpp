@@ -23,7 +23,7 @@ void VRAEnvironmentControl::initCharacteristics(){
             (uint16_t) VRAEnvironmentControl::Characteristics::Environment,
             16,//size
             this->eq,
-            10000,//interval
+            1000,//interval
             500,//min
             600000,//max
             callback(this, &VRAEnvironmentControl::getEnv)
