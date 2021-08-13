@@ -24,6 +24,8 @@ public:
     void initCharacteristics();
     void pastBleInit();
 
+    float getTemperature();
+
 private:
     void onStateOff();
     void onStateStandby();
