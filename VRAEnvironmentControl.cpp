@@ -71,7 +71,7 @@ void VRAEnvironmentControl::getEnv()
 
     this->setGatt(
         (uint16_t)VRAEnvironmentControl::Characteristics::Environment,
-        environment, 4);
+        environment, 4);//TEST
 }
 
 float VRAEnvironmentControl::getTemperature(){
